@@ -19,17 +19,17 @@ export async function analyzeIntentAndSentiment(
       2. Determine the sentiment (positive, neutral, negative)
       3. Assess confidence level (0-1)
       4. Identify the workflow type:
-         - "knowledge_query": Questions about Dan's experience, skills, projects, education, work history, etc.
+         - "knowledge_query": Questions about Ralph's experience, skills, projects, education, work history, etc.
          - "general": Greetings, small talk, casual conversation, follow-up questions about previous conversation 
            (e.g., "What is my name?", "What did I just tell you?"), acknowledgments, or light personal exchanges
-         - "contact": Requests to contact Dan or get in touch
-         - "out_of_scope": Questions or requests completely unrelated to Dan or the conversation 
+         - "contact": Requests to contact Ralph or get in touch
+         - "out_of_scope": Questions or requests completely unrelated to Ralph or the conversation 
            (e.g., math problems like "1+1", requests for code/HTML, general knowledge questions, 
-           technical help, or anything that has nothing to do with Dan's portfolio or the ongoing conversation)
+           technical help, or anything that has nothing to do with Ralph's portfolio or the ongoing conversation)
       
       IMPORTANT: 
       - Conversational questions (like asking about names, recalling what was said) should be "general", NOT "out_of_scope"
-      - Only classify as "out_of_scope" if the request is completely unrelated to Dan AND the conversation context
+      - Only classify as "out_of_scope" if the request is completely unrelated to Ralph AND the conversation context
       - When in doubt between "general" and "out_of_scope", prefer "general" for conversational queries
       
       Return:

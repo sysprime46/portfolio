@@ -15,10 +15,10 @@ export function ChatWelcomeCard({
   const [isHovered, setIsHovered] = useState(false);
 
   const questions = [
-    "What AI projects has Dan worked on?",
-    "Tell me about Dan's experience with multi-agent systems",
-    "What technologies does Dan specialize in?",
-    "What are Dan's recent achievements?",
+    "What AI projects has Ralph worked on?",
+    "Tell me about Ralph's experience with multi-agent systems",
+    "What technologies does Ralph specialize in?",
+    "What are Ralph's recent achievements?",
   ];
 
   return (
@@ -41,7 +41,7 @@ export function ChatWelcomeCard({
 
       <div className="rounded-xl bg-background px-5 py-3.5 shadow-sm ring-1 ring-border/40">
         <p className="text-xs font-normal leading-relaxed">
-          👋 Hi! I&apos;m Dan, ask me anything!
+          👋 Hi! I&apos;m Ralph, ask me anything!
         </p>
       </div>
 

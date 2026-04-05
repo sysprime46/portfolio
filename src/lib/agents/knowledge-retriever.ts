@@ -42,7 +42,7 @@ export async function retrieveKnowledge(
     const { object } = await generateObject({
       model: groq("openai/gpt-oss-120b") as any,
       schema: RetrievedInfoSchema,
-      prompt: `Extract relevant information from Dan Chavez's resume to answer the user's question.
+      prompt: `Extract relevant information from Ralph Llyod Fernando's resume to answer the user's question.
       
       User question: "${userMessage}"${memoryContextStr}
       

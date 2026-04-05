@@ -253,4 +253,38 @@ export const Icons = {
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
   ),
+  flagPH: (props: IconProps) => (
+    <svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <title>Philippines</title>
+      <path fill="#0038a8" d="M0 0h640v240H0z" />
+      <path fill="#ce1126" d="M0 240h640v240H0z" />
+      <path fill="#fff" d="M0 0l320 240L0 480z" />
+      <g fill="#fcd116">
+        <path d="M45 218l14 44h46l-37 27 14 44-37-27-37 27 14-44-37-27h46z" />
+        <path d="M276 149l9 27h28l-23 17 9 27-23-17-23 17 9-27-23-17h28z" />
+        <path d="M276 287l9 27h28l-23 17 9 27-23-17-23 17 9-27-23-17h28z" />
+        <path d="M45 240a15 15 0 1 1 30 0 15 15 0 0 1-30 0" />
+      </g>
+    </svg>
+  ),
+  flagUS: (props: IconProps) => (
+    <svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <title>United States</title>
+      <path fill="#bd3d44" d="M0 0h640v480H0" />
+      <path
+        stroke="#fff"
+        strokeWidth="37"
+        d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"
+      />
+      <path fill="#192f5d" d="M0 0h364.8v258.5H0" />
+      <marker id="us-a" markerHeight="30" markerWidth="30">
+        <path fill="#fff" d="m14 0 9 27H0l23-17-9 27-9-27-9 27 23 17H-9z" />
+      </marker>
+      <path
+        fill="none"
+        markerMid="url(#us-a)"
+        d="m0 0 16 11h61 61 61 61 61L47 37h61 61 61 61h61L16 63h61 61 61 61 61L47 89h61 61 61 61L16 115h61 61 61 61 61L47 141h61 61 61 61L16 166h61 61 61 61 61L47 192h61 61 61 61L16 218h61 61 61 61 61"
+      />
+    </svg>
+  ),
 };

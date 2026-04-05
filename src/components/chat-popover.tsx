@@ -74,7 +74,7 @@ export function ChatPopover({
       const welcomeMessage: Message = {
         role: "assistant",
         content:
-          "Hi! I'm Dan. Ask me anything about my work experience, skills, projects, or background!",
+          "Hi! I'm Ralph. Ask me anything about my work experience, skills, projects, or background!",
         timestamp: new Date(),
       };
       setMessages([welcomeMessage]);
@@ -273,21 +273,21 @@ export function ChatPopover({
               <div className="w-10 h-10 rounded-full overflow-hidden ring-1 ring-primary/10">
                 <Image
                   src="/avatar/me-light.png"
-                  alt="Dan"
+                  alt="Ralph"
                   width={40}
                   height={40}
                   className="w-full h-full object-cover dark:hidden"
                 />
                 <Image
                   src="/avatar/me-dark.png"
-                  alt="Dan"
+                  alt="Ralph"
                   width={40}
                   height={40}
                   className="w-full h-full object-cover hidden dark:block"
                 />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">Chat with Dan</h3>
+                <h3 className="font-semibold text-sm">Chat with Ralph</h3>
                 <p className="text-xs text-muted-foreground">
                   Always here to help
                 </p>
@@ -308,14 +308,14 @@ export function ChatPopover({
                   <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden ring-1 ring-primary/10">
                     <Image
                       src="/avatar/me-light.png"
-                      alt="Dan"
+                      alt="Ralph"
                       width={32}
                       height={32}
                       className="w-full h-full object-cover dark:hidden"
                     />
                     <Image
                       src="/avatar/me-dark.png"
-                      alt="Dan"
+                      alt="Ralph"
                       width={32}
                       height={32}
                       className="w-full h-full object-cover hidden dark:block"
@@ -401,14 +401,14 @@ export function ChatPopover({
                 <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden ring-1 ring-primary/10">
                   <Image
                     src="/avatar/me-light.png"
-                    alt="Dan"
+                    alt="Ralph"
                     width={32}
                     height={32}
                     className="w-full h-full object-cover dark:hidden"
                   />
                   <Image
                     src="/avatar/me-dark.png"
-                    alt="Dan"
+                    alt="Ralph"
                     width={32}
                     height={32}
                     className="w-full h-full object-cover hidden dark:block"

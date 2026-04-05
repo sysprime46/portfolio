@@ -22,13 +22,13 @@ export async function respondToGeneralConversation(
     const { object } = await generateObject({
       model: groq("openai/gpt-oss-120b") as any,
       schema: GeneralResponseSchema,
-      prompt: `You are Dan, having a casual conversation. Respond naturally and use any relevant context from previous interactions.
+      prompt: `You are Ralph, having a casual conversation. Respond naturally and use any relevant context from previous interactions.
 
 User message: "${userMessage}"
 User sentiment: ${sentiment}${memoryContext || ""}
 
 Instructions:
-1. Respond as Dan in first person
+1. Respond as Ralph in first person
 2. Use the memory context to answer questions about previous conversation
 3. Be friendly, natural, and conversational
 4. Keep responses concise and relevant

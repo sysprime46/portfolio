@@ -1,13 +1,12 @@
 import { DATA } from "@/data/resume";
-import { getProjectSortDate } from "@/lib/date-utils";
+import { sortProjectsForDisplay } from "@/lib/date-utils";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { Fragment } from "react";
 
 export default function ProjectsPage() {
-  const sortedProjects = [...DATA.projects].sort((a, b) => {
-    return getProjectSortDate(b.dates) - getProjectSortDate(a.dates);
-  });
+  const sortedProjects = sortProjectsForDisplay(DATA.projects);
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <div className="space-y-8">
@@ -53,6 +52,9 @@ export default function ProjectsPage() {
                 project.dates.split(" - ")[1] || project.dates.split(" - ")[0];
               const extractedYear = year.match(/\d{4}/)?.[0] || year;
 
+              const href = project.href || "#";
+              const isInternal = href.startsWith("/");
+
               return (
                 <tr key={index} className="group">
                   <td className="py-4 px-2 text-sm text-muted-foreground whitespace-nowrap align-top">
@@ -60,14 +62,23 @@ export default function ProjectsPage() {
                   </td>
                   <td className="py-4 px-2 align-top">
                     <div className="flex flex-col gap-1">
-                      <Link
-                        href={project.href || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-sm hover:text-primary transition-colors"
-                      >
-                        {project.title}
-                      </Link>
+                      {isInternal ? (
+                        <Link
+                          href={href}
+                          className="font-semibold text-sm hover:text-primary transition-colors"
+                        >
+                          {project.title}
+                        </Link>
+                      ) : (
+                        <Link
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-sm hover:text-primary transition-colors"
+                        >
+                          {project.title}
+                        </Link>
+                      )}
                       <p className="text-xs text-muted-foreground">
                         {project.description}
                       </p>
@@ -90,16 +101,27 @@ export default function ProjectsPage() {
                     {project.links && project.links.length > 0 && (
                       <div className="flex gap-2">
                         {project.links.map((link, idx) => (
-                          <Link
-                            key={idx}
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-colors"
-                            title={link.type}
-                          >
-                            {link.icon}
-                          </Link>
+                          <Fragment key={idx}>
+                            {link.href.startsWith("/") ? (
+                              <Link
+                                href={link.href}
+                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                title={link.type}
+                              >
+                                {link.icon}
+                              </Link>
+                            ) : (
+                              <Link
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                title={link.type}
+                              >
+                                {link.icon}
+                              </Link>
+                            )}
+                          </Fragment>
                         ))}
                       </div>
                     )}

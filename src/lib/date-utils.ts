@@ -30,3 +30,15 @@ export function getProjectSortDate(dateString: string): number {
   const startDate = parts[0]?.trim();
   return parseDateToTimestamp(startDate);
 }
+
+/** Pinned projects render first; remaining sort is newest start date first. */
+export function sortProjectsForDisplay<
+  T extends { dates: string; pinned?: boolean },
+>(projects: readonly T[]): T[] {
+  return [...projects].sort((a, b) => {
+    const pa = a.pinned ? 1 : 0;
+    const pb = b.pinned ? 1 : 0;
+    if (pa !== pb) return pb - pa;
+    return getProjectSortDate(b.dates) - getProjectSortDate(a.dates);
+  });
+}

@@ -2,7 +2,7 @@
 <img alt="Portfolio" src="public/demo.gif" width="90%">
 </div>
 
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdnachavez%2Fportfolio-v2)
+# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpokemon918%2Fportfolio-v2)
 
 Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://magicui.design/), deployed on Vercel.
 
@@ -22,7 +22,7 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/dnachavez/portfolio-v2
+   git clone https://github.com/pokemon918/portfolio-v2
    ```
 
 2. Move to the cloned directory
@@ -67,4 +67,4 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
 
 # License
 
-Licensed under the [MIT license](https://github.com/dnachavez/portfolio-v2/blob/master/LICENSE).
+Licensed under the [MIT license](https://github.com/pokemon918/portfolio-v2/blob/master/LICENSE).

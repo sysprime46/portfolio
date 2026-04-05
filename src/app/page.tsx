@@ -8,15 +8,22 @@ import { SectionNav } from "@/components/section-nav";
 import { ThemeAvatar } from "@/components/theme-avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
-import { getProjectSortDate } from "@/lib/date-utils";
-import { ChevronRightIcon } from "lucide-react";
+import { sortProjectsForDisplay } from "@/lib/date-utils";
+import { ChevronRightIcon, Brain, Clock, Layers, Workflow, Database } from "lucide-react";
+
+const descriptionIcons: Record<string, React.ReactNode> = {
+  brain: <Brain className="size-5 text-primary" />,
+  clock: <Clock className="size-5 text-primary" />,
+  layers: <Layers className="size-5 text-primary" />,
+  workflow: <Workflow className="size-5 text-primary" />,
+  database: <Database className="size-5 text-primary" />,
+};
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
 const SECTIONS = [
-  { id: "resume", label: "Resume" },
   { id: "work", label: "Work Experience" },
   { id: "education", label: "Education" },
   { id: "skills", label: "Skills" },
@@ -27,9 +34,7 @@ const SECTIONS = [
 ];
 
 export default function Page() {
-  const sortedProjects = [...DATA.projects].sort((a, b) => {
-    return getProjectSortDate(b.dates) - getProjectSortDate(a.dates);
-  });
+  const sortedProjects = sortProjectsForDisplay(DATA.projects);
 
   const sortedCertifications = [...DATA.certifications].sort((a, b) => {
     const getYear = (dateStr: string) => {
@@ -41,7 +46,7 @@ export default function Page() {
 
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10">
         <div className="space-y-10 lg:sticky lg:top-10 lg:self-start">
           <section id="hero">
             <div className="space-y-8">
@@ -51,13 +56,18 @@ export default function Page() {
                     delay={BLUR_FADE_DELAY}
                     className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                     yOffset={8}
-                    text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
+                    text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
                   />
-                  <BlurFadeText
-                    className="max-w-[600px] md:text-xl"
-                    delay={BLUR_FADE_DELAY}
-                    text={DATA.description}
-                  />
+                  <div className="flex flex-col gap-2 mt-6">
+                    {DATA.descriptionLines.map((line, index) => (
+                      <BlurFade key={index} delay={BLUR_FADE_DELAY + index * 0.05}>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          {descriptionIcons[line.icon]}
+                          <span className="text-sm md:text-base whitespace-nowrap">{line.text}</span>
+                        </div>
+                      </BlurFade>
+                    ))}
+                  </div>
                 </div>
                 <BlurFade delay={BLUR_FADE_DELAY}>
                   <ThemeAvatar
@@ -89,46 +99,6 @@ export default function Page() {
         </div>
 
         <div className="space-y-10">
-          <section id="resume">
-            <div className="flex min-h-0 flex-col gap-y-3">
-              <BlurFade delay={BLUR_FADE_DELAY * 5}>
-                <h2 className="text-xl font-bold">Resume</h2>
-              </BlurFade>
-              <BlurFade delay={BLUR_FADE_DELAY * 5.5}>
-                <div className="relative group">
-                  <div className="relative overflow-hidden rounded-lg border bg-card">
-                    <div className="relative h-[500px] w-full">
-                      <iframe
-                        src="/resume.pdf"
-                        className="w-full h-full pointer-events-none"
-                        title="Resume Preview"
-                      />
-                      <div 
-                        className="absolute bottom-0 left-0 right-0 h-[65%] backdrop-blur-xl"
-                        style={{
-                          maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 10%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.8) 45%, black 70%)',
-                          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 10%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.8) 45%, black 70%)',
-                        }}
-                      />
-                      <div 
-                        className="absolute bottom-0 left-0 right-0 h-[65%] bg-gradient-to-b from-transparent from-0% via-background/50 via-40% to-background to-90%"
-                      />
-                    </div>
-                  </div>
-                  
-                  <Link
-                    href="/resume.pdf"
-                    download="Dan_Chavez_Resume.pdf"
-                    className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:underline active:underline transition-colors mt-4"
-                  >
-                    View full resume archive
-                    <ChevronRightIcon className="size-4 translate-x-0 transform transition-all duration-300 ease-out group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </BlurFade>
-            </div>
-          </section>
-
           <section id="work">
             <div className="flex min-h-0 flex-col gap-y-3">
               <BlurFade delay={BLUR_FADE_DELAY * 6}>
@@ -149,6 +119,7 @@ export default function Page() {
                     badges={work.badges}
                     period={`${work.start} - ${work.end ?? "Present"}`}
                     description={work.description}
+                    featured={work.featured}
                   />
                 </BlurFade>
               ))}
@@ -233,7 +204,14 @@ export default function Page() {
                       description={project.description}
                       dates={project.dates}
                       tags={project.technologies}
-                      image={project.image}
+                      image={
+                        "image" in project ? project.image : undefined
+                      }
+                      thumbnailSplit={
+                        "thumbnailSplit" in project
+                          ? project.thumbnailSplit
+                          : undefined
+                      }
                       video={project.video}
                       links={project.links}
                     />
