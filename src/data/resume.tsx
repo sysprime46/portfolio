@@ -121,25 +121,6 @@ export const DATA = {
 
         navbar: true,
       },
-      X: {
-        name: "X",
-        url: "https://x.com/dnachavez_dev",
-        icon: Icons.x,
-
-        navbar: true,
-      },
-      Instagram: {
-        name: "Instagram",
-        url: "https://www.instagram.com/dnachavez",
-        icon: Icons.instagram,
-        navbar: true,
-      },
-      TikTok: {
-        name: "TikTok",
-        url: "https://www.tiktok.com/@dnachavez",
-        icon: Icons.tiktok,
-        navbar: true,
-      },
       email: {
         name: "Send Email",
         url: "#",

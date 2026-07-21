@@ -25,15 +25,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const checkSession = () => {
-      const activeSession = hasActiveSession();
-      setHasSession(activeSession);
-
-      if (!activeSession) {
-        const timer = setTimeout(() => {
-          setShowWelcomeCard(true);
-        }, 1500);
-        return () => clearTimeout(timer);
-      }
+      setHasSession(hasActiveSession());
     };
 
     checkSession();
